@@ -1,0 +1,5 @@
+datasette==0.35
+csvs-to-sqlite==1.0
+sqlite-utils==2.3.1
+datasette-cluster-map==0.8
+datasette-vega==0.6.2
