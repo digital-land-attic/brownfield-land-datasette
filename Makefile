@@ -2,6 +2,9 @@ INDEX=../brownfield-land-collection/index
 DATA=../brownfield-land-collection/dataset
 CACHE =../organisation-collection/collection
 
+SPATIALITE_EXTENSION:=/usr/lib/x86_64-linux-gnu/mod_spatialite.so
+SPATIALITE_EXTENSION:=/usr/local/lib/mod_spatialite.dylib
+
 DATAFILES=\
 	$(CACHE)/organisation.csv\
 	$(INDEX)/resource.csv\
@@ -14,7 +17,7 @@ DATAFILES=\
 DB=brownfield-land.db
 
 serve: $(DB)
-	datasette --load-extension=/usr/lib/x86_64-linux-gnu/mod_spatialite.so $(DB)
+	datasette --load-extension=$(SPATIALITE_EXTENSION) $(DB)
 
 $(DB): $(DATAFILES) Makefile points.py
 	rm -f $@
@@ -32,7 +35,7 @@ $(DB): $(DATAFILES) Makefile points.py
 	sqlite-utils add-foreign-key $(DB) link-organisation organisation organisation organisation
 	sqlite-utils insert $(DB) issue $(INDEX)/issue.csv --csv
 	sqlite-utils add-foreign-key $(DB) issue resource resource resource
-	python3 points.py
+	python3 points.py $(SPATIALITE_EXTENSION)
 
 clean:
 	rm -f $(DB)
