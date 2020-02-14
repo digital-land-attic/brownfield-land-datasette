@@ -1,6 +1,6 @@
-CACHE=../brownfield-land-collection/var/cache
 INDEX=../brownfield-land-collection/index
 DATA=../brownfield-land-collection/dataset
+CACHE =../organisation-collection/collection
 
 DATAFILES=\
 	$(CACHE)/organisation.csv\
