@@ -1,4 +1,4 @@
-datasette==0.35
+datasette==0.56.1
 csvs-to-sqlite==1.0
 sqlite-utils==2.3.1
 datasette-cluster-map==0.8
